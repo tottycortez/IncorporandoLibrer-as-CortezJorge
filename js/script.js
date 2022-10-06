@@ -19,8 +19,9 @@ let inputsAcceso = document.querySelectorAll("#acceso input")
 let alerta = document.querySelectorAll("p")
 
 // EVENTOS .//////////////////////////////
-
+//evento para crear usuario
 btnCrearUsuario.addEventListener("click",()=> {
+    //variables donde se guardan los valores que se toman de los imputs
     let nombre = inputsLogueo[0].value
     let pass = inputsLogueo[1].value
 
@@ -46,27 +47,31 @@ btnCrearUsuario.addEventListener("click",()=> {
 })
 
 
-
-btnAcceso.addEventListener("click",()=> {
     /// TRAIGO LOS VALORES QUE LLEVE AL LOCAL
     const traerUsuarios = localStorage.getItem("usuarios")
     // console.log(JSON.parse(traerUsuarios))
     /// EL NUEVO ARRAY QUE TRAGIO CON LOS DATOS QUE SE GUARDARON
     const usuariosArrays = JSON.parse(localStorage.getItem("usuarios"))
-    console.log(traerUsuarios)
+    //console.log(traerUsuarios)
 
-
+//evento para ingresar usuario
+btnAcceso.addEventListener("click",()=> {
+    //variables donde se guardan los valores que se toman de los imputs
     let nombre = inputsAcceso[0].value
     let pass = inputsAcceso[1].value
 
     let usuario = usuariosArrays.find((elem) => {
         return elem.nombre === nombre}
     )
-
-    if (usuario == undefined || pass != usuario.pass) {
+    //DESESTRUCTURACION DEL OBJETO QUE TRAIGO
+    const {pass:passUsuario} = usuario
+    
+    // verifico que los datos sean correctos
+    if (usuario == undefined || pass != passUsuario) {
         alertaP(1)
         return
     }
+
 
     // ANTES DE REDIRIGIR CON LOCATION
     // Tengo que guardar en storage para pasarle info al otro html
