@@ -9,11 +9,12 @@ const usuarioCorrecto = JSON.parse(localStorage.getItem("datos"))
 const {nombre} = usuarioCorrecto
 
 // DOM   ////////////////////////////////////////////////
+let btnCerrarSesion = document.querySelector("#cerrarSesion button")
+
 let bienvenidoUsuario = document.createElement("h2")
 bienvenidoUsuario.innerHTML = `<h2>Bienvenido/a ${nombre} </h2>`
 document.body.appendChild(bienvenidoUsuario)
 
-let btnCerrarSesion = document.querySelector("#cerrarSesion button")
 
 
 //EVENTOS  //////////////////////////////////////////////////
